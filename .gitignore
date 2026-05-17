@@ -1,0 +1,25 @@
+/target/
+Cargo.lock
+*.swp
+*.swo
+*~
+.DS_Store
+*.o
+*.a
+*.so
+*.dylib
+.vscode/
+.idea/
+*.iml
+models/*.gguf
+
+# Fine-tuning artifacts
+notebooks/fine_tuning/*.ipynb
+notebooks/fine_tuning/outputs/
+notebooks/fine_tuning/lora_adapter/
+notebooks/fine_tuning/lora_adapter.zip
+notebooks/fine_tuning/combined_dataset.jsonl
+datasets/fine_tuning/combined.jsonl
+datasets/fine_tuning/lora_adapter/
+scripts/fine_tuning/__pycache__/
+scripts/fine_tuning/*.pyc

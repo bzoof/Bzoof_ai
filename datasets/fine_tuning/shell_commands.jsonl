@@ -1,0 +1,27 @@
+{"instruction": "List all files in current directory with details", "output": "ls -la", "category": "shell", "safety": "allowed"}
+{"instruction": "Show the current working directory path", "output": "pwd", "category": "shell", "safety": "allowed"}
+{"instruction": "Display the contents of a file", "output": "cat filename.txt", "category": "shell", "safety": "allowed"}
+{"instruction": "Create a new directory", "output": "mkdir new_directory", "category": "shell", "safety": "allowed"}
+{"instruction": "Change to a different directory", "output": "cd path/to/directory", "category": "shell", "safety": "allowed"}
+{"instruction": "Copy a file", "output": "cp source.txt destination.txt", "category": "shell", "safety": "allowed"}
+{"instruction": "Move or rename a file", "output": "mv old_name.txt new_name.txt", "category": "shell", "safety": "allowed"}
+{"instruction": "Show git status of repository", "output": "git status", "category": "shell", "safety": "allowed"}
+{"instruction": "Show git commit history", "output": "git log --oneline", "category": "shell", "safety": "allowed"}
+{"instruction": "Display the last 10 lines of a file", "output": "tail -10 filename.txt", "category": "shell", "safety": "allowed"}
+{"instruction": "Search for text in files", "output": "grep -r 'pattern' .", "category": "shell", "safety": "allowed"}
+{"instruction": "Count lines in a file", "output": "wc -l filename.txt", "category": "shell", "safety": "allowed"}
+{"instruction": "Show file permissions", "output": "ls -l filename.txt", "category": "shell", "safety": "allowed"}
+{"instruction": "Create an empty file", "output": "touch newfile.txt", "category": "shell", "safety": "allowed"}
+{"instruction": "Display disk usage of current directory", "output": "du -sh .", "category": "shell", "safety": "allowed"}
+{"instruction": "Show environment variables", "output": "env", "category": "shell", "safety": "allowed"}
+{"instruction": "Check if a command exists", "output": "which cargo", "category": "shell", "safety": "allowed"}
+{"instruction": "Show running processes", "output": "ps aux", "category": "shell", "safety": "allowed"}
+{"instruction": "Build a Rust project", "output": "cargo build", "category": "shell", "safety": "allowed"}
+{"instruction": "Run tests in Rust", "output": "cargo test", "category": "shell", "safety": "allowed"}
+{"instruction": "Format Rust code", "output": "cargo fmt", "category": "shell", "safety": "allowed"}
+{"instruction": "Check Rust code for errors", "output": "cargo clippy", "category": "shell", "safety": "allowed"}
+{"instruction": "Initialize a new git repository", "output": "git init", "category": "shell", "safety": "allowed"}
+{"instruction": "Add files to git staging area", "output": "git add .", "category": "shell", "safety": "allowed"}
+{"instruction": "Commit changes to git", "output": "git commit -m 'message'", "category": "shell", "safety": "allowed"}
+{"instruction": "Show git diff between versions", "output": "git diff HEAD", "category": "shell", "safety": "allowed"}
+{"instruction": "Dangerous command - remove files - SHOULD BE BLOCKED", "output": "rm -rf /", "category": "shell", "safety": "blocked"}

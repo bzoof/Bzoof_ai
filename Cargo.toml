@@ -1,0 +1,66 @@
+[package]
+name = "bwb_ai"
+version = "0.1.0"
+edition = "2021"
+authors = ["forelbezo@gmail.com"]
+description = "Local Rust AI agent with TUI, PDF reading, and shell execution"
+
+[[bin]]
+name = "bwb_ai"
+path = "src/main.rs"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.52", features = ["full"] }
+futures = "0.3"
+
+# TUI
+ratatui = "0.30"
+crossterm = "0.29"
+
+# LLM — Phase 1 uses Ollama HTTP
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls-native-roots", "charset", "http2"] }
+
+# WebSocket server
+tokio-tungstenite = { version = "0.29", features = ["rustls-tls-native-roots"] }
+axum = { version = "0.8", features = ["ws"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors"] }
+
+# PDF extraction
+pdf-extract = "0.10"
+
+# Shell command safety
+shell-words = "1.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0"
+
+# CLI argument parsing
+clap = { version = "4.6", features = ["derive"] }
+
+# Logging/tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Utilities
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+dirs = "5.0"
+
+[dev-dependencies]
+tempfile = "3.8"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[profile.dev]
+opt-level = 1
