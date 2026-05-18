@@ -8,7 +8,7 @@ services:
     environment:
       OLLAMA_HOST: 0.0.0.0:11434
     ports:
-      - "11434:11434"
+      - "11435:11434"  # Map 11434 in container to 11435 on host (11434 used by local Ollama)
     volumes:
       - ollama_data:/root/.ollama
       - ./models:/models
@@ -30,7 +30,7 @@ services:
     container_name: bwb_ai_ws
     environment:
       RUST_LOG: info
-      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_HOST: http://ollama:11434  # Internal container network (port 11434)
     ports:
       - "8080:8080"
     volumes:
@@ -48,13 +48,7 @@ services:
       retries: 3
       start_period: 15s
     restart: unless-stopped
-    command: >
-      sh -c "echo 'Waiting for Ollama...' &&
-             curl --retry 5 --retry-delay 5 http://ollama:11434/api/tags &&
-             echo 'Pulling model...' &&
-             curl -X POST http://ollama:11434/api/pull -d '{\"name\": \"qwen2.5-coder:3b\"}' &&
-             echo 'Starting WebSocket server...' &&
-             bwb_ai --ws --ws_addr 0.0.0.0:8080"
+    command: ["--ws", "--ws-addr", "0.0.0.0:8080"]
 
 # Named volumes
 volumes:
