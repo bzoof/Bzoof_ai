@@ -1,6 +1,6 @@
 # Multi-stage build for bwb_ai
 # Stage 1: Builder
-FROM rust:latest as builder
+FROM rust:bookworm as builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ COPY . .
 RUN cargo build --release --quiet
 
 # Stage 2: Runtime
-FROM debian:bookworm-slim
+FROM debian:bookworm
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
