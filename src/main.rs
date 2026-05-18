@@ -3,6 +3,7 @@ mod chat_ui;
 mod pdf_reader;
 mod shell_runner;
 mod ws_server;
+mod ws_messages;
 
 use anyhow::{anyhow, Result};
 use chat_ui::TuiApp;
@@ -30,6 +31,9 @@ struct Args {
 
     #[arg(long)]
     ws: bool,
+
+    #[arg(long, default_value = "127.0.0.1:8080")]
+    ws_addr: String,
 
     #[arg(long)]
     one_shot: bool,
@@ -85,13 +89,14 @@ async fn main() -> Result<()> {
         num_threads: 6,
     };
 
-    let client = LlamaClient::new(config).await?;
-
     if args.one_shot {
+        let client = LlamaClient::new(config).await?;
         handle_one_shot(client).await?;
     } else if args.ws {
-        eprintln!("WebSocket server not yet implemented (Phase 4)");
+        let addr = args.ws_addr.parse::<std::net::SocketAddr>()?;
+        ws_server::WsServer::run(addr, config).await?;
     } else {
+        let client = LlamaClient::new(config).await?;
         handle_tui(client, &args.model).await?;
     }
 
